@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180509103706) do
+ActiveRecord::Schema.define(version: 20180510105546) do
+
+  create_table "hashtags", force: :cascade do |t|
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_hashtags_on_created_at"
+  end
 
   create_table "microposts", force: :cascade do |t|
     t.text "content"
@@ -25,6 +32,13 @@ ActiveRecord::Schema.define(version: 20180509103706) do
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "trends", force: :cascade do |t|
+    t.integer "hashtag_id"
+    t.integer "micropost_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -7,6 +7,11 @@ class MicropostsController < ApplicationController
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
       flash[:success] = "Micropost created!"
+      hash_tags = @micropost.content.scan(/#(\w+)/)
+      hash_tags.flatten.each do |hash_tag|
+        hash_object = Hashtag.find_or_create_by!(content: hash_tag)
+        @micropost.trends.create(hashtag_id: hash_object.id)
+      end
       redirect_to root_url
     else
       @feed_items = []
