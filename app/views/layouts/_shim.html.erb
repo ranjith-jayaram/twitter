@@ -2,3 +2,25 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
   </script>
 <![endif]-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<meta name="google-signin-client_id" content="833750667924-1lpavuuc5v5mmhl068rlc52fgilnuoqv.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+function onSignIn(googleUser)
+{
+	var profile=googleUser.getBasicProfile();
+	$(".g-signin2").css("display","none");
+	$("#pic").attr('src',profile.getImageUrl());
+	$("#email").text(profile.getEmail());
+}
+function signOut()
+{
+	var auth2=gapi.auth2.getAuthInstance();
+	auth2.signOut().then(function(){
+		alert("success");
+		$(".g-signin2").css("display","block");
+		$(".data").css("display","none");
+	});
+}
+</script>
