@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :interests
+  has_many :hashtags, through: :interests, foreign_key: "user_id"
   has_many :microposts, dependent: :destroy
   has_many :active_relationships,  class_name:  "Relationship",
                                    foreign_key: "follower_id",
@@ -6,7 +8,8 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name:  "Relationship",
                                    foreign_key: "followed_id",
                                    dependent:   :destroy
-  has_many :following, through: :active_relationships,  source: :followed
+  has_many :following_users, through: :active_relationships,  source: :followed, source_type: "User"
+  has_many :following_hashtags, through: :active_relationships,  source: :followed, source_type: "Hashtag"
   has_many :followers, through: :passive_relationships, source: :follower
 
 
@@ -20,7 +23,6 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
-
 
   # Returns the hash digest of the given string.
   def User.digest(string)
@@ -57,9 +59,11 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
   def feed
-    following_ids = "SELECT followed_id FROM relationships
-                     WHERE  follower_id = :user_id"
-    Micropost.where("user_id IN (#{following_ids})
+    following_user_ids = "SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id AND followed_type = 'User'"
+    following_hashtag_ids = ""
+    micropost_ids = "Trend"
+    Micropost.where("id IN (#{micropost_ids}) OR user_id IN (#{following_user_ids})
                      OR user_id = :user_id", user_id: id)
   end
 
@@ -80,8 +84,8 @@ class User < ApplicationRecord
     UserMailer.password_reset(self).deliver_now
   end
     # Follows a user.
-  def follow(other_user)
-    active_relationships.create(followed_id: other_user.id)
+  def follow(followed_object, followed_object_type)
+    active_relationships.create(followed_id: followed_object.id, followed_type: followed_object_type)
   end
 
   # Unfollows a user.
@@ -90,10 +94,9 @@ class User < ApplicationRecord
   end
 
   # Returns true if the current user is following the other user.
-  def following?(other_user)
-    following.include?(other_user)
+  def following?(followable)
+    (following_users + following_hashtags).include?(followable)
   end
-
 
   private
 

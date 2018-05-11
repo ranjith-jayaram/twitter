@@ -2,8 +2,14 @@ class RelationshipsController < ApplicationController
   before_action :logged_in_user
 
   def create
-    @user = User.find(params[:followed_id])
-    current_user.follow(@user)
+
+  if params[:followed_type]=="User"
+    @user = User.find_by(id: params[:followed_id])
+    current_user.follow(@user, "User")
+  elsif params[:followed_type]=="Hashtag"
+    @tag = Hashtag.find_by(id: params[:followed_id])
+    current_user.follow(@tag, "Hashtag")
+  end
     respond_to do |format|
       format.html { redirect_to @user }
       format.js
