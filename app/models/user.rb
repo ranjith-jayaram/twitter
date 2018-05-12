@@ -61,8 +61,12 @@ class User < ApplicationRecord
   def feed
     following_user_ids = "SELECT followed_id FROM relationships
                      WHERE  follower_id = :user_id AND followed_type = 'User'"
-    following_hashtag_ids = ""
-    micropost_ids = "Trend"
+
+   # following_hashtag_ids = "SELECT followed_id FROM relationships
+   #                  WHERE  follower_id = :hashtag_id AND followed_type = 'Hashtag'"
+    micropost_ids ="SELECT micropost_id FROM trends WHERE hashtag_id in (SELECT followed_id FROM relationships
+                    WHERE  follower_id = :user_id AND followed_type = 'Hashtag')" 
+    
     Micropost.where("id IN (#{micropost_ids}) OR user_id IN (#{following_user_ids})
                      OR user_id = :user_id", user_id: id)
   end
@@ -89,13 +93,19 @@ class User < ApplicationRecord
   end
 
   # Unfollows a user.
-  def unfollow(other_user)
-    following.delete(other_user)
+  def unfollow_user(other_user)
+    following_users.delete(other_user)
+  end
+    def unfollow_hashtag(hashtag)
+    following_hashtags.delete(hashtag)
   end
 
   # Returns true if the current user is following the other user.
-  def following?(followable)
-    (following_users + following_hashtags).include?(followable)
+  def following_user?(user)
+    following_users.include?(user)
+  end
+  def following_tag?(hashtag)
+    following_hashtags.include?(hashtag)
   end
 
   private
