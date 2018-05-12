@@ -13,7 +13,7 @@ class RelationshipsController < ApplicationController
     @tag = Hashtag.find_by(id: params[:followed_id])
     current_user.follow(@tag, "Hashtag")
      respond_to do |format|
-      format.html { redirect_to @hashtag }
+      format.html { redirect_to @tag }
       format.js
     end
   end
@@ -32,7 +32,7 @@ class RelationshipsController < ApplicationController
     @tag = Relationship.find(params[:id]).followed
     current_user.unfollow_hashtag(@tag)
       respond_to do |format|
-      format.html { redirect_to @hashtag }
+      format.html { redirect_to @tag }
       format.js
     end
   end
