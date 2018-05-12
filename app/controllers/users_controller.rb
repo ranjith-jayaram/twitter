@@ -50,6 +50,13 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  def following_tags
+    @title = "Following tags"
+    @user  = User.find(params[:id])
+    @tags = @user.following_tags.paginate(page: params[:page])
+    render 'shared/show_follow'
+  end
+
   def followers
     @title = "Followers"
     @user  = User.find(params[:id])

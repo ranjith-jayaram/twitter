@@ -12,8 +12,10 @@
     </strong>
     followers
   </a>
+  <a href="<%= following_user_path(@user) %>">
       <strong id="Hashtags" class="stat">
       <%= @user.following_hashtags.count %>
     </strong>
     hashtags
+    </a>
 </div>
