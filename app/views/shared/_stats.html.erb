@@ -20,7 +20,7 @@
   </a>
   <% if current_user?(@user) %>
   <a href="<%= followingmicroposts_user_path(@user) %>">
-  <strong id="Microposts" class="stat">
+  <strong id="Saved" class="stat">
       <%= @user.following_microposts.count %>
     </strong>
     Saved

@@ -19,6 +19,7 @@ class RelationshipsController < ApplicationController
       end 
     elsif params[:followed_type]=="Micropost"
       @micropost = Micropost.find_by(id: params[:followed_id])
+      @user = current_user
       @hi=current_user.follow(@micropost, "Micropost")
        respond_to do |format|
         format.html { redirect_to @user }
@@ -44,6 +45,7 @@ class RelationshipsController < ApplicationController
         format.js
       end
     elsif params[:followed_type]=="Micropost"
+      @user = current_user
       @micropost = Relationship.find(params[:id]).followed
       current_user.unfollow_micropost(@micropost)
         respond_to do |format|

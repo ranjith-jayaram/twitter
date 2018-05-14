@@ -6,5 +6,6 @@
 	$("#followers").html('<%= @tag.followers.count %>');
 <% elsif @followed_type == "Micropost" %>
 	$('#save_form_<%= "#{@micropost.id}" %>').html("<%= escape_javascript(render('microposts/save', micropost: @micropost)) %>");
-	$("#followers").html('<%= @micropost.followers.count %>');
+	$("#Saved").html('<%= @user.following_microposts.count %>');
 <% end %>
+
