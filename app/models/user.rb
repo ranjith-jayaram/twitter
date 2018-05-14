@@ -9,6 +9,7 @@ class User < ApplicationRecord
                                    foreign_key: "followed_id",
                                    dependent:   :destroy
   has_many :following_users, through: :active_relationships,  source: :followed, source_type: "User"
+  has_many :following_microposts, through: :active_relationships,  source: :followed, source_type: "Micropost"
   has_many :following_hashtags, through: :active_relationships,  source: :followed, source_type: "Hashtag"
   has_many :followers, through: :passive_relationships, source: :follower
 
@@ -96,8 +97,11 @@ class User < ApplicationRecord
   def unfollow_user(other_user)
     following_users.delete(other_user)
   end
-    def unfollow_hashtag(hashtag)
+  def unfollow_hashtag(hashtag)
     following_hashtags.delete(hashtag)
+  end
+  def unfollow_micropost(micropost)
+    following_microposts.delete(micropost)
   end
 
   # Returns true if the current user is following the other user.
@@ -106,6 +110,9 @@ class User < ApplicationRecord
   end
   def following_tag?(hashtag)
     following_hashtags.include?(hashtag)
+  end
+  def following_micropost?(micropost)
+    following_microposts.include?(micropost)
   end
 
   private

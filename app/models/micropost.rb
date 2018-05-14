@@ -1,4 +1,6 @@
 class Micropost < ApplicationRecord
+  has_many :relationships, foreign_key: "followed_id"
+  has_many :followers, through: :relationships, source: :follower
   belongs_to :user
   has_many :trends
   has_many :hashtags, through: :trends, foreign_key: "micropost_id"
