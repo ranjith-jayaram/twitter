@@ -17,5 +17,11 @@
       <%= @user.following_hashtags.count %>
     </strong>
     hashtags
+  </a>
+  <a href="<%= followingmicroposts_user_path(@user) %>">
+  <strong id="Microposts" class="stat">
+      <%= @user.following_microposts.count %>
+    </strong>
+    Saved
     </a>
 </div>

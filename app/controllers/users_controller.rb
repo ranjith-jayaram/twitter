@@ -57,6 +57,13 @@ class UsersController < ApplicationController
     render 'shared/show_follow'
   end
 
+  def followingmicroposts
+    @title = "Saved Microposts"
+    @user  = User.find(params[:id])
+    @microposts = @user.following_microposts.paginate(page: params[:page])
+    render 'shared/show_saved'
+  end
+
   def followers
     @title = "Followers"
     @user  = User.find(params[:id])
