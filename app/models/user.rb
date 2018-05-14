@@ -62,8 +62,6 @@ class User < ApplicationRecord
     following_user_ids = "SELECT followed_id FROM relationships
                      WHERE  follower_id = :user_id AND followed_type = 'User'"
 
-   # following_hashtag_ids = "SELECT followed_id FROM relationships
-   #                  WHERE  follower_id = :hashtag_id AND followed_type = 'Hashtag'"
     micropost_ids ="SELECT micropost_id FROM trends WHERE hashtag_id in (SELECT followed_id FROM relationships
                     WHERE  follower_id = :user_id AND followed_type = 'Hashtag')" 
     
