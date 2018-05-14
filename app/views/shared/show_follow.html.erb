@@ -15,7 +15,7 @@
     <h3><%= @title %></h3>
     <% if @tags.any? %>
     <% @tags.each do |tag| %>
-  <%= link_to tag.content, tag %>
+  <ul><%= link_to tag.content, tag %><ul>
   <% end %>
     <% end %>
   </div>

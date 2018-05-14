@@ -1,3 +1,9 @@
-$("#follow_form").html("<%= escape_javascript(render('users/unfollow')) %>");
-$("#followers").html('<%= @user.followers.count %>');
-$("#follow_form").html("<%= escape_javascript(render('hashtags/unfollow')) %>");
+<% if @followed_type == "User" %>
+	$("#follow_form").html("<%= escape_javascript(render('users/unfollow')) %>");
+	$("#followers").html('<%= @user.followers.count %>');
+<% elsif @followed_type == "Hashtag" %>
+	$("#hashtag_follow_form").html("<%= escape_javascript(render('hashtags/unfollow')) %>");
+	$("#followers").html('<%= @tag.followers.count %>');
+<% elsif @followed_type == "Micropost" %>
+	$('#save_form_<%= "#{@micropost.id}" %>').html("<%= escape_javascript(render('microposts/unsave', micropost: @micropost)) %>");
+<% end %>

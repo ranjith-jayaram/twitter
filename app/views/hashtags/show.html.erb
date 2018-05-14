@@ -6,9 +6,15 @@
         <%= @tag.content %>
       </h1>
     </section>
+    <%= render 'follow_form' if logged_in? %>
+    <a href="<%= followers_hashtag_path(@tag) %>">
+      <strong id="followers" class="stat">
+        <%= @tag.followers.count %>
+      </strong>
+      followers
+    </a>
   </aside>
     <div class="col-md-8">
-        <%= render 'follow_form' if logged_in? %>
     <% if @tag.microposts.any? %>
       <h3>Microposts (<%= @tag.microposts.count %>)</h3>
       <ol class="microposts">

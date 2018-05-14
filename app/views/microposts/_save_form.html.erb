@@ -1,0 +1,7 @@
+<div id='save_form_<%= "#{micropost.id}" %>' >
+  <% if current_user.following_micropost?(micropost) %>
+    <%= render 'microposts/unsave', micropost: micropost %>
+  <% else %>
+    <%= render 'microposts/save', micropost: micropost %>
+  <% end %>
+</div>
