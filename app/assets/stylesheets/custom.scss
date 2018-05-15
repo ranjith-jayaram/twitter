@@ -301,3 +301,27 @@ span.picture {
   width: 20px;
   height: 20px;
 }
+
+.modal-dialog {
+  width: 50%;
+  height: 100%;
+}
+
+.modal-content {
+  height: auto;
+  min-height: 100%;
+  border-radius: 0;
+}
+
+.modal-backdrop {
+  background-color: transparent !important;
+}
+
+.modal-body {
+    max-height: calc(100vh - 210px);
+}
+
+.story-image{
+   width: 700px;
+   height: 700px;
+}
