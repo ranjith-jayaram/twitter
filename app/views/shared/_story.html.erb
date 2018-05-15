@@ -19,7 +19,7 @@
                   <div class='item <%= i==0 ? "active" : "" %>'>
                   <div class ="story-dialog"><%= image_tag story.picture.url, width: '100%' %></div>
                     <div class="carousel-caption">
-                    <div><%= story.user.name %></div> <br/> 
+                    <div class="user"><%= link_to story.user.name, story.user  %></div> <br/> 
                     <%= story.content %></div>
                   </div>
                 <% end %>
