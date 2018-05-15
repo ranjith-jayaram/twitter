@@ -5,30 +5,29 @@
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Status</h4>
-        </div>
-        <div class="modal-body">
-          <div class="container">
-            <div id="myCarousel" class="carousel slide story-image" data-ride="carousel">
-              <!-- Indicators -->
+                  <!-- Indicators -->
               <ol class="carousel-indicators">
               <% @story_items.each_with_index do |story, i| %>
                   <li data-target="#myCarousel" data-slide-to='<%= i %>' class='<%= i == 0 ? "active" : "" %>'></li>
               <% end %>
               </ol>
+    
+      <!-- Modal content-->
+      <div class="modal-content trans">
+        <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <div class="container">
+            <div id="myCarousel" class="carousel slide story-image" data-ride="carousel">
+
 
               <!-- Wrapper for slides -->
               <div class="carousel-inner">
                 <% @story_items.each_with_index do |story, i| %>
                   <div class='item <%= i==0 ? "active" : "" %>'>
-                  <div class="story-name"><%= story.user.name %></div>
-                  <div><%= image_tag story.picture.url %></div>
-                    <div class="story-content"><%= story.content %></div>
+                  <div class ="story-dialog"><%= image_tag("pic1.jpeg",height: '100%', width: '100%') %></div>
+                    <div class="carousel-caption">
+                    <div><%= story.user.name %></div> <br/> 
+                    <%= story.content %></div>
                   </div>
                 <% end %>
               </div>

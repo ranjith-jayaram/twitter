@@ -303,40 +303,39 @@ span.picture {
 }
 
 .modal-dialog {
-  width: 50%;
-  height: 100%;
+  width: 42%;
+  height: auto;
+}
+.story-dialog {
+  width: auto;
+  height: auto;
 }
 
 .modal-content {
-  height: auto;
-  min-height: 50%;
+  height: 100%;
+  min-height: 100%;
   border-radius: 10;
 }
 
-.modal-backdrop {
-  background-color: transparent !important;
-}
-
-.modal-body {
-    max-height: calc(100vh - 210px);
-}
-
-.story-image{
-   width: 700px;
-   height: 500px;
-}
 .story-name
 {
   font-family: "Times New Roman", Times, serif;
   font-size: 17px;
   font-weight: bold;
   font-style: oblique;
-  color: blue;
   text-decoration: underline;
   text-indent: 10px;
   letter-spacing: 0.7px;
+  opacity: 0.9;
 }
 .story-content
 {
   text-indent: 10px;
 }
+.story-image{
+  width: 50%;
+
+}
+.trans{
+  background-color: transparent !important;
+  }
