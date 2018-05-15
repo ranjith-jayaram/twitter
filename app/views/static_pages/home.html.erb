@@ -11,6 +11,7 @@
         <%= render 'shared/micropost_form' %>
       </section>
       <%= render 'shared/story' if @story_items.present? %>
+      <%= render 'shared/trending' if @tags.present? %>
    </aside>
     <div class="col-md-8">
       <h3>Micropost Feed</h3>
