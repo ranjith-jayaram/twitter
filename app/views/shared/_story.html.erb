@@ -27,7 +27,7 @@
                 <% @story_items.each_with_index do |story, i| %>
                   <div class='item <%= i==0 ? "active" : "" %>'>
                   <div class="story-name"><%= story.user.name %></div>
-                  <div><%= image_tag story.picture.url %></div>
+                  <div class ="story"><%= image_tag("pic1.jpg") %></div>
                     <div class="story-content"><%= story.content %></div>
                   </div>
                 <% end %>
