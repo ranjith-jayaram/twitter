@@ -10,7 +10,7 @@
       <section class="micropost_form">
         <%= render 'shared/micropost_form' %>
       </section>
-      <%= render 'shared/story' %>
+      <%= render 'shared/story' if @story_items.present? %>
    </aside>
     <div class="col-md-8">
       <h3>Micropost Feed</h3>
