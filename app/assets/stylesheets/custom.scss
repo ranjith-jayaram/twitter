@@ -309,8 +309,8 @@ span.picture {
 
 .modal-content {
   height: auto;
-  min-height: 100%;
-  border-radius: 0;
+  min-height: 50%;
+  border-radius: 10;
 }
 
 .modal-backdrop {
@@ -323,5 +323,20 @@ span.picture {
 
 .story-image{
    width: 700px;
-   height: 700px;
+   height: 500px;
+}
+.story-name
+{
+  font-family: "Times New Roman", Times, serif;
+  font-size: 17px;
+  font-weight: bold;
+  font-style: oblique;
+  color: blue;
+  text-decoration: underline;
+  text-indent: 10px;
+  letter-spacing: 0.7px;
+}
+.story-content
+{
+  text-indent: 10px;
 }
