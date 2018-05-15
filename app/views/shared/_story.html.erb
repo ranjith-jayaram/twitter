@@ -5,13 +5,6 @@
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-                  <!-- Indicators -->
-              <ol class="carousel-indicators">
-              <% @story_items.each_with_index do |story, i| %>
-                  <li data-target="#myCarousel" data-slide-to='<%= i %>' class='<%= i == 0 ? "active" : "" %>'></li>
-              <% end %>
-              </ol>
-    
       <!-- Modal content-->
       <div class="modal-content trans">
         <div class="modal-body">
@@ -24,7 +17,7 @@
               <div class="carousel-inner">
                 <% @story_items.each_with_index do |story, i| %>
                   <div class='item <%= i==0 ? "active" : "" %>'>
-                  <div class ="story-dialog"><%= image_tag story.picture.url,height: '100%', width: '100%' %></div>
+                  <div class ="story-dialog"><%= image_tag "pic1.jpeg",height: '100%', width: '100%' %></div>
                     <div class="carousel-caption">
                     <div><%= story.user.name %></div> <br/> 
                     <%= story.content %></div>
