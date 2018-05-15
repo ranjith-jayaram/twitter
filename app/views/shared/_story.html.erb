@@ -1,7 +1,7 @@
 <div class="container">
   <!-- Trigger the modal with a button -->
+  <% if @story_items.any? %>
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">View Status</button>
-
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -27,7 +27,7 @@
                 <% @story_items.each_with_index do |story, i| %>
                   <div class='item <%= i==0 ? "active" : "" %>'>
                   <div class="story-name"><%= story.user.name %></div>
-                    <div><%= image_tag("rails.png") %></div>
+                  <div><%= image_tag story.picture.url %></div>
                     <div class="story-content"><%= story.content %></div>
                   </div>
                 <% end %>
@@ -48,5 +48,7 @@
       
     </div>
   </div>
-  
+<%else%>
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" disabled=true>View Status</button>
+<%end%>  
 </div>
